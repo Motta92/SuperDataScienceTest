@@ -1,0 +1,26 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>Notes ({{incompleteCount}})</h1>
+
+      <label class="hide-completed">
+        <input type="checkbox" />
+        Hide Completed Tasks
+      </label>
+
+      {{> loginButtons}}
+
+      {{#if currentUser}}
+        <form class="new-note">
+          <input type="text" name="text" placeholder="Type to add new notes" />
+        </form>
+      {{/if}}
+    </header>
+
+    <ul>
+      {{#each notes}}
+        {{> note}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
