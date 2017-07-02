@@ -1,0 +1,35 @@
+<template name="note">
+  <div class="panel panel-default">
+    <div class="panel-body {{#if checked}}checked{{/if}}">
+      <div class="note-settings">
+        <button class="delete"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <button class="edit {{removeIsEditableClass}}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+        <div class="priority-dropdown">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              {{priority}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu"  aria-labelledby="dropdownMenu1">
+              <li><a class="priority-item">1</a></li>
+              <li><a class="priority-item">2</a></li>
+              <li><a class="priority-item">3</a></li>
+              <li><a class="priority-item">4</a></li>
+              <li><a class="priority-item">5</a></li>
+              <li><a class="priority-item">6</a></li>
+              <li><a class="priority-item">7</a></li>
+              <li><a class="priority-item">8</a></li>
+              <li><a class="priority-item">9</a></li>
+              <li><a class="priority-item">10</a></li>
+            </ul>
+          </div>
+          <span id="dropdown-text">Priority</span>
+        </div>
+      </div>
+      <h4 class="text {{removeIsEditableClass}}">{{text}}</h4>
+      <div class="edit-note">
+        <input type="text" value="{{text}}" placeholder="{{text}}" class="{{addIsEditableClass}}"/>
+      </div>
+    </div>
+  </div>
+</template>

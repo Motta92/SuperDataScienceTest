@@ -4,7 +4,7 @@ import {ReactiveDict} from 'meteor/reactive-dict';
 import { Notes } from '../api/notes.js';
 import './body.html';
 
-import './note.js';
+import './notes/note.js';
 
 Template.body.onCreated(function bodyOnCreated(){
   this.state = new ReactiveDict();
@@ -12,13 +12,9 @@ Template.body.onCreated(function bodyOnCreated(){
 });
 
 Template.body.helpers({
-
+  // Gets the user notes from mongoDB
   userNotes(){
     const instance = Template.instance();
-    if(instance.state.get('hideCompleted')=='priority'){
-      // If hide completed is checked, filter notes
-      return Notes.find({userId: Meteor.userId(),checked:{$ne: true}},{sort:{createdAt: -1} });
-    }
     if (instance.state.get('sortBy') == 'date') {
       return Notes.find({userId: Meteor.userId()},{sort:{createdAt: -1}});
     }
@@ -29,14 +25,19 @@ Template.body.helpers({
     return Notes.find({userId: Meteor.userId()});
   },
 
-  incompleteCount(){
-    return Notes.find({checked:{$ne: true}}).count();
+  // Returns the number of notes a logged in user has created
+  numberOfNotes(){
+    return Notes.find({userId: Meteor.userId()}).count();
   },
 
-
+  // Returns the user's username
+  username(){
+    return Meteor.user().username;
+  },
 });
 
 Template.body.events({
+  // Inserts a note into the collection once the form has been submitted
   'submit .new-note'(event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -52,15 +53,13 @@ Template.body.events({
     target.text.value = '';
   },
 
+  // Handles collection sort by setting a reactive-dict variable
   'click .sort-by-date'(event, instance) {
     instance.state.set('sortBy','date');
   },
 
+  // Handles collection sort by setting a reactive-dict variable
   'click .sort-by-priority'(event, instance) {
     instance.state.set('sortBy', 'priority');
   },
-
-  'change .hide-completed input'(event, instance) {
-   instance.state.set('hideCompleted', event.target.checked);
- },
 });

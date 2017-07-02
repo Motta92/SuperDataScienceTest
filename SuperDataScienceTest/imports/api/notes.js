@@ -30,28 +30,25 @@ Meteor.methods({
       priority: 1,
     });
   },
+
   'notes.remove'(noteId) {
     check(noteId, String);
 
     Notes.remove(noteId);
   },
+
   'notes.update'(noteId, newText) {
     check(noteId, String);
     check(newText, String);
 
     Notes.update(noteId, {$set: {text: newText}});
   },
+
+  // Called when a new priority is selected
   'notes.update_priority'(noteId, priority) {
     check(noteId, String);
     check(priority, Number);
 
     Notes.update(noteId, {$set: {priority: priority}});
-  },
-
-  'notes.setChecked'(noteId, setChecked) {
-    check(noteId, String);
-    check(setChecked, Boolean);
-
-    Notes.update(noteId, { $set: { checked: setChecked } });
   },
 });

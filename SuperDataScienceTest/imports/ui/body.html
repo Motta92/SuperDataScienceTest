@@ -1,45 +1,39 @@
 <body>
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <a class="navbar-brand" href="#">Notes App</a>
       </div>
       <div class="logout">
         {{> atNavButton}}
       </div>
-    </div><!-- /.container-fluid -->
+    </div>
   </nav>
+
   <div class="container">
-    <header>
-      <!-- {{> loginButtons}}
-      -->
-      {{> atForm }}
-    </header>
-    <h1>Notes ({{incompleteCount}})</h1>
-
-    <label class="hide-completed">
-      <input type="checkbox" />
-      Hide Completed Tasks
-    </label>
-
+    {{> atForm }}
+    <!--
+    This section below is only shown if the user is logged in  
+    -->
+    {{#if currentUser}}
+    <h1>{{username}}'s Notes</h1>
     <div class="sort-section">
-      <label>
-        Sort by&#58;
-      </label>
-      <button class="btn btn-default sort-by-date">Date</button>
-      <button class="btn btn-default sort-by-priority">Priority</button>
+      <h1>Notes ({{numberOfNotes}})</h1>
+      <div>
+        <label>Sort by&#58;</label>
+        <button class="btn btn-default sort-by-date">Date</button>
+        <button class="btn btn-default sort-by-priority">Priority</button>
+      </div>
     </div>
 
-    {{#if currentUser}}
-      <form class="new-note">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <input type="text" name="text" placeholder="Type to add new notes" />
-          </div>
+    <form class="new-note">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <input type="text" name="text" placeholder="Type to add new notes" />
+          <button type="submit" class="btn btn-success">Create</button>
         </div>
-
-      </form>
+      </div>
+    </form>
     {{/if}}
 
     <div class="notesGrid row">
@@ -47,9 +41,7 @@
       <div class="col-sm-12 col-md-6 col-lg-4">
         {{> note}}
       </div>
-
       {{/each}}
     </div>
-
   </div>
 </body>

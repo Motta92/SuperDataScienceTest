@@ -1,33 +1,45 @@
 /* CSS declarations go here */
+
 body {
   font-family: sans-serif;
   background-attachment: fixed;
-
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-
   padding: 0;
   margin: 0;
-
   font-size: 14px;
 }
-
-/* New CSS */
 
 .new-note input {
   box-sizing: border-box;
   padding: 10px 0;
   background: transparent;
   border: none;
-  width: 100%;
-  padding-right: 80px;
-  font-size: 1em;
+  width: 90%;
+  font-size: 18px;
 }
 
 .new-note input:focus{
+  outline: 0;
+}
+
+.new-note button{
+  float: right;
+}
+
+.edit-note input{
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid #ddd;
+}
+
+.edit-note input:focus{
   outline: 0;
 }
 
@@ -59,4 +71,32 @@ body {
 
 .logout{
   float: right;
+}
+
+.logout button{
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.sort-section h1{
+  display: inline-block;
+}
+
+.sort-section div{
+  display: inline-block;
+  float: right;
+}
+
+#dropdown-text{
+  float: right;
+  padding-right: 5px;
+}
+
+.priority-dropdown div{
+  float: right;
+}
+
+.note-settings{
+  line-height: 30px;
 }
