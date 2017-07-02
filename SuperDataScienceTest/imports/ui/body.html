@@ -1,26 +1,55 @@
 <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Notes App</a>
+      </div>
+      <div class="logout">
+        {{> atNavButton}}
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
   <div class="container">
     <header>
-      <h1>Notes ({{incompleteCount}})</h1>
-
-      <label class="hide-completed">
-        <input type="checkbox" />
-        Hide Completed Tasks
-      </label>
-
-      {{> loginButtons}}
-
-      {{#if currentUser}}
-        <form class="new-note">
-          <input type="text" name="text" placeholder="Type to add new notes" />
-        </form>
-      {{/if}}
+      <!-- {{> loginButtons}}
+      -->
+      {{> atForm }}
     </header>
+    <h1>Notes ({{incompleteCount}})</h1>
 
-    <ul>
-      {{#each notes}}
+    <label class="hide-completed">
+      <input type="checkbox" />
+      Hide Completed Tasks
+    </label>
+
+    <div class="sort-section">
+      <label>
+        Sort by&#58;
+      </label>
+      <button class="btn btn-default sort-by-date">Date</button>
+      <button class="btn btn-default sort-by-priority">Priority</button>
+    </div>
+
+    {{#if currentUser}}
+      <form class="new-note">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <input type="text" name="text" placeholder="Type to add new notes" />
+          </div>
+        </div>
+
+      </form>
+    {{/if}}
+
+    <div class="notesGrid row">
+      {{#each userNotes}}
+      <div class="col-sm-12 col-md-6 col-lg-4">
         {{> note}}
+      </div>
+
       {{/each}}
-    </ul>
+    </div>
+
   </div>
 </body>
